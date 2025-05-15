@@ -25,3 +25,5 @@ proto_compile = _proto_compile
 # Export utils
 bazel_build_rule_common_attrs = _bazel_build_rule_common_attrs
 filter_files = _filter_files
+
+proto_compile_toolchains = [str(Label("@rules_proto//proto:toolchain_type"))]

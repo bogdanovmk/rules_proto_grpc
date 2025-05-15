@@ -9,8 +9,8 @@ load(
     "get_package_root",
     "strip_path_prefix",
 )
-load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoPluginInfo")
 load("//internal:protoc.bzl", "build_protoc_args")
+load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoPluginInfo")
 
 proto_compile_attrs = {
     "protos": attr.label_list(
@@ -88,9 +88,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     verbose = ctx.attr.verbose
 
     # Load toolchain and tools
-    protoc_toolchain_info = ctx.toolchains[str(Label("//protobuf:toolchain_type"))]
-    protoc = protoc_toolchain_info.protoc_executable
-    fixer = protoc_toolchain_info.fixer_executable
+    protoc_toolchain_info = ctx.toolchains[str(Label("@rules_proto//proto:toolchain_type"))]
+    protoc = protoc_toolchain_info.proto.proto_compiler.executable
+    fixer = ctx.executable._fixer
 
     # The directory where the outputs will be generated, relative to the package.
     # A temporary dir is used here to allow output directories that may need to be merged later
