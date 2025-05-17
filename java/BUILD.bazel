@@ -4,6 +4,8 @@ alias(
     name = "grpc_java_plugin_tool",
     actual = select({
         "@bazel_tools//src/conditions:darwin_arm64": ":bin/grpc_java_plugin_darwin_arm64",
+        "@bazel_tools//src/conditions:darwin_x86_64": ":bin/grpc_java_plugin_darwin_x86_64",
+        "@bazel_tools//src/conditions:linux_arm64": ":bin/grpc_java_plugin_linux_arm64",
         "@bazel_tools//src/conditions:linux_x86_64": ":bin/grpc_java_plugin_linux_x86_64",
         "//conditions:default": "@io_grpc_grpc_java//compiler:grpc_java_plugin",
     }),
